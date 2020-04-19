@@ -22,7 +22,7 @@ namespace FdpPathfinder.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Charaters",
+                name: "Characters",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -36,9 +36,9 @@ namespace FdpPathfinder.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Charaters", x => x.Id);
+                    table.PrimaryKey("PK_Characters", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Charaters_Players_PlayerId",
+                        name: "FK_Characters_Players_PlayerId",
                         column: x => x.PlayerId,
                         principalTable: "Players",
                         principalColumn: "Id",
@@ -46,15 +46,15 @@ namespace FdpPathfinder.API.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Charaters_PlayerId",
-                table: "Charaters",
+                name: "IX_Characters_PlayerId",
+                table: "Characters",
                 column: "PlayerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Charaters");
+                name: "Characters");
 
             migrationBuilder.DropTable(
                 name: "Players");
