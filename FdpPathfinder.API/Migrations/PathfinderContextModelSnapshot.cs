@@ -37,6 +37,9 @@ namespace FdpPathfinder.API.Migrations
                     b.Property<int>("Level")
                         .HasColumnType("int");
 
+                    b.Property<string>("People")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
 

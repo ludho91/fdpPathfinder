@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FdpPathfinder.API.Migrations
 {
     [DbContext(typeof(PathfinderContext))]
-    [Migration("20200419175340_Rename")]
+    [Migration("20200419194504_Rename")]
     partial class Rename
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,9 @@ namespace FdpPathfinder.API.Migrations
 
                     b.Property<int>("Level")
                         .HasColumnType("int");
+
+                    b.Property<string>("People")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");

@@ -12,6 +12,7 @@ namespace FdpPathfinder.API.Models
         public int Experience { get; set; }
         public string Alignement { get; set; }
         public string Deity { get; set; }
+        public string People { get; set; }
         public Player Player { get; set; }
         
     }

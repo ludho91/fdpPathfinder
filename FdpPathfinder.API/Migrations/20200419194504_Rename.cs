@@ -39,6 +39,11 @@ namespace FdpPathfinder.API.Migrations
                 oldType: "nvarchar(max)",
                 oldNullable: true);
 
+            migrationBuilder.AddColumn<string>(
+                name: "People",
+                table: "Characters",
+                nullable: true);
+
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Characters",
                 table: "Characters",
@@ -61,6 +66,10 @@ namespace FdpPathfinder.API.Migrations
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Characters",
+                table: "Characters");
+
+            migrationBuilder.DropColumn(
+                name: "People",
                 table: "Characters");
 
             migrationBuilder.RenameTable(

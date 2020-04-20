@@ -14,25 +14,19 @@ namespace FdpPathfinder.API.Controllers
     [ApiController]
     public class CharacterController : ControllerBase
     {
-        private readonly PathfinderContext _context;
+        private readonly ICharacterRepository _characterRepo;
 
-        public CharacterController(PathfinderContext context)
+        public CharacterController(ICharacterRepository characterRepo)
         {
-            _context = context;
+            _characterRepo = characterRepo;
         }
 
-        // GET: api/Character
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Character>>> GetCharacters()
-        {
-            return await _context.Characters.ToListAsync();
-        }
 
         // GET: api/Character/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Character>> GetCharacter(int id)
         {
-            var character = await _context.Characters.FindAsync(id);
+            var character = await _characterRepo.GetCharacterById(id);
 
             if (character == null)
             {
@@ -42,7 +36,7 @@ namespace FdpPathfinder.API.Controllers
             return character;
         }
 
-        // PUT: api/Character/5
+       /*  // PUT: api/Character/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -53,11 +47,11 @@ namespace FdpPathfinder.API.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(character).State = EntityState.Modified;
+            _characterRepo.Entry(character).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _characterRepo.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -80,8 +74,8 @@ namespace FdpPathfinder.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Character>> PostCharacter(Character character)
         {
-            _context.Characters.Add(character);
-            await _context.SaveChangesAsync();
+            _characterRepo.Characters.Add(character);
+            await _characterRepo.SaveChangesAsync();
 
             return CreatedAtAction("GetCharacter", new { id = character.Id }, character);
         }
@@ -90,21 +84,21 @@ namespace FdpPathfinder.API.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Character>> DeleteCharacter(int id)
         {
-            var character = await _context.Characters.FindAsync(id);
+            var character = await _characterRepo.Characters.FindAsync(id);
             if (character == null)
             {
                 return NotFound();
             }
 
-            _context.Characters.Remove(character);
-            await _context.SaveChangesAsync();
+            _characterRepo.Characters.Remove(character);
+            await _characterRepo.SaveChangesAsync();
 
             return character;
         }
 
         private bool CharacterExists(int id)
         {
-            return _context.Characters.Any(e => e.Id == id);
-        }
+            return _characterRepo.Characters.Any(e => e.Id == id);
+        }*/
     }
 }
